@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="/static/styles.css" rel="stylesheet" />
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <title>Melanoma classifier</title>
+
+</head>
+
+<body>
+
+    <main class="container p-5">
+        <div>
+            <h1>Melanoma Classifier</h1>
+            <p>
+                I made this web application as practice/homework assignment during the fasta.ai course: Practical Deep
+                Learning for Coders, v3. I am by no means an expert, and I am still learning a lot on this subject. You
+                can find this project on github "Have to insert link", and if you have got any feedback please let me
+                know there.
+                Best wishes
+            </p>
+            <h4>Disclaimer</h4>
+            <p>Please, don't use this application as a reliable source of information. This application is made for
+                practice. If you have any abnormal moles or think something is wrong with your mole, visit an expert!
+                The results of this application is not 100% reliable. Actually, if you have any health problems, always
+                visit a specialist instead of trusting someone on the internet.</p>
+        </div>
+        <div>
+            {% block results %}{% endblock %}
+        </div>
+
+        <div>
+            <form action="/url" method="get">
+                <div class="form-group">
+                    <input autocomplete="off" autofocus class="form-control" name="url" placeholder="Url to image"
+                        type="text" />
+                </div>
+                <button class="btn btn-primary mb-3" type="submit">Submit url</button>
+            </form>
+        </div>
+
+        <div>
+            <form action="/image" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01" name="image">
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit image</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        $('.custom-file-input').on('change', function () {
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+    </script>
+
+</body>
+
+</html>

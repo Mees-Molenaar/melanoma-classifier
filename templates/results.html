@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{%block results %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Result</th>
+            <th scope="col">Certainty</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ data[0] }}</td>
+            <td>{{ data[1]|round(2, 'floor') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

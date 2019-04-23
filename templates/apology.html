@@ -1,0 +1,7 @@
+{% extends "index.html" %}
+
+
+{% block results %}
+<img alt="{{ top }}" class="border"
+    src="http://memegen.link/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?alt=https://i.imgur.com/CsCgN7Ll.png" />
+{% endblock %}
