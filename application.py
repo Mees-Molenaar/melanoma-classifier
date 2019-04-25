@@ -126,7 +126,7 @@ def image():
         file = request.files['image']
 
         if not file:
-            return apology("Must provide an url", 400)
+            return apology("Must provide an image", 400)
         elif not allowed_file(file.filename):
             return apology("Not an allowed file extension", 400)
         else:
