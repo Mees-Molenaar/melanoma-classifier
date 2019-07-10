@@ -7,7 +7,6 @@ import urllib.request
 from fastai import *
 from fastai.vision import *
 
-model_file_url = "https://drive.google.com/uc?export=download&id=1OD6aNXAUJ8jVSpxrYqMHgxMNR64u68iO"
 model_file_name = 'melanoma_model.pth'
 classes = ['Melanoma', 'NotMelanoma']
 #path = Path(__file__).parent
@@ -23,21 +22,13 @@ hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML,
        'Connection': 'keep-alive'}
 
 
-def download_file(url, dest):
-    if dest.exists():
-        return
-
-    req = urllib.request.Request(url, headers=hdr)
-    response = urllib.request.urlopen(req)
-    data = response.read()
-
-    with open(dest, 'wb') as f:
-        f.write(data)
-
-
-def setup_learner():
+def setup_learner(img):
     learn = load_learner(path, model_file_name)
-    return learn
+    result = learn.predict(img)
+    show = []
+    show.append(result[0])
+    show.append(result[2][result[1]].item())
+    return show
 
 # Only allow certain extensions
 
@@ -103,16 +94,11 @@ def url():
         else:
             req = urllib.request.Request(url, headers=hdr)
             img = open_image(BytesIO(urllib.request.urlopen(req).read()))
-            learn = setup_learner()
-            result = learn.predict(img)
-            show = []
-            show.append(result[0])
-            show.append(result[2][result[1]].item())
+            show = setup_learner(img)
             return render_template("results.html", data=show)
 
     # If no request has been made
     else:
-
         return render_template("index.html")
 
 
@@ -131,11 +117,7 @@ def image():
             return apology("Not an allowed file extension", 400)
         else:
             img = open_image(BytesIO(file.read()))
-            learn = setup_learner()
-            result = learn.predict(img)
-            show = []
-            show.append(result[0])
-            show.append(result[2][result[1]].item())
+            show = setup_learner(img)
             return render_template("results.html", data=show)
 
     # If no request has been made return the homepage
