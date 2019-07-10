@@ -1,6 +1,6 @@
 # melanoma-classifier
 
-This is the first machine learned web application that I have made, during following the[fastai course](https://course.fast.ai). And you can use the app [here](https://melanoma-classifier.herokuapp.com/).
+This is the first machine learned web application that I have made, during following the [fastai course](https://course.fast.ai). And you can use the app [here](https://melanoma-classifier.herokuapp.com/).
 
 The trained model is: `models\melanoma_model.pth`
 The notebook: `Homework_Week2_Melonamo_WebApp_V1.ipynb`
