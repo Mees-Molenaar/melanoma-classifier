@@ -18,6 +18,8 @@ I used code of different sources:
 * CS50 course
 * [Simon W's Cougar or not project](https://github.com/simonw/cougar-or-not)
 
+The dataset used is the HAM10000 dataset, and can be found [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T)
+
 The code and model is not perfect. Therefore, I would love to get feedback if you got any.
 
 Cheers!
